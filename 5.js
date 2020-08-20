@@ -27,9 +27,9 @@ function getNumDivide(n){
 }
 
 console.log( getNumDivide(10) )*/
-  
 
-function getNum(x, num, arr) {    
+
+function getNum(x, num, arr) {
   if (x % num === 0) {
     arr.push(num);
     x = x / num;
@@ -55,21 +55,33 @@ function getDivide(n) {
 
   for (let i = 2; i <= n; i++) {
     tResArr.push(getNum(i, num, tArr))
-    if (tResArr[i - 1].length > maxLen)  maxLen = tResArr[i - 1].length
+    
+      if (tResArr[i - 1].length > maxLen) maxLen = tResArr[i - 1].length
+    
     num = 2
-    tArr = []   
+    tArr = []
   }
+
+  console.log(tResArr);
 
   for (let i = 0; i < maxLen; i++) {
-    for (let j = 0; j < tResArr[i].length; j++) {      
-      if ()
+    tArr = []
+    for (let j = 2; j < tResArr.length; j++) {
+      //  console.log(tResArr[j][i], i, j);
+      if (tResArr[j][i]) {
+        console.log(tArr.indexOf(tResArr[j][i]))
+        if (tArr.indexOf(tResArr[j][i]) == -1) {          
+          tArr.push(tResArr[j][i])
+        }
+      }
     }
-    
+    console.log("tArr = ", tArr, );
+    resArr = resArr.concat(tArr)
   }
 
 
-  console.log( resArr, maxLen )
-  
+  return resArr.reduce((mul, x) => mul * x)
+
 }
-getDivide(20)
+console.log(getDivide(6))
 //console.log( getNum(10, num, arr) )
