@@ -46,17 +46,17 @@ function getNum(x, num, arr) {
 }
 
 function getDivide(n) {
-  let tResArr = [[2]]
+  let tResArr = []
   let resArr = []
 
   let tArr = []
   let num = 2
   let maxLen = 0
 
-  for (let i = 2; i <= n; i++) {
+  for (let i = 4; i <= n; i++) {
     tResArr.push(getNum(i, num, tArr))
     
-      if (tResArr[i - 1].length > maxLen) maxLen = tResArr[i - 1].length
+      if (tResArr[i - 4].length > maxLen) maxLen = tResArr[i - 4].length
     
     num = 2
     tArr = []
@@ -66,10 +66,13 @@ function getDivide(n) {
 
   for (let i = 0; i < maxLen; i++) {
     tArr = []
-    for (let j = 2; j < tResArr.length; j++) {
+    for (let j = 0; j < tResArr.length; j++) {
       //  console.log(tResArr[j][i], i, j);
       if (tResArr[j][i]) {
-        console.log(tArr.indexOf(tResArr[j][i]))
+        //console.log(tResArr[j][i])
+        if (i > 0 && tResArr[j][i] > 4) {          
+          continue
+        }
         if (tArr.indexOf(tResArr[j][i]) == -1) {          
           tArr.push(tResArr[j][i])
         }
@@ -79,9 +82,40 @@ function getDivide(n) {
     resArr = resArr.concat(tArr)
   }
 
-
+  console.log("resArr = ", resArr);
   return resArr.reduce((mul, x) => mul * x)
 
 }
-console.log(getDivide(6))
+
+//правильное решение, но не мое... :'( 
+//232792560
+
+function NOK(A)
+{   
+    let n = A.length
+    let a = Math.abs(A[0])
+
+    for (var i = 1; i < n; i++){ 
+
+      let b = Math.abs(A[i])
+      let c = a
+
+       while (a && b){
+          a > b ? a %= b : b %= a
+          console.log(a, b)
+      }
+      a = Math.abs(c*A[i])/(a+b)
+      //console.log(a)
+     }
+    return a
+}
+let tmpArr = [1,2,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
+console.log(NOK(tmpArr))
+
+let a = 4
+let b = 2
+console.log(a && b)
+
+
+//console.log(getDivide(20))
 //console.log( getNum(10, num, arr) )
