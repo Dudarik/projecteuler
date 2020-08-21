@@ -18,7 +18,7 @@ function getDifference(n) {
     sqRes += i * i
     mul += i
   }  
-  return mul * mul - sqRes//resArr.reduce((sum, n) => sum += n)
+  return mul * mul - sqRes
 }
 
 console.log(getDifference(100));
